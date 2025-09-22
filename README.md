@@ -7,6 +7,10 @@ To run tests based on specific tags, use the `--grep` option with the Playwright
 npx playwright test --grep tagname
 
 
+### Browser Configuration ###
+ 
+configure the browser setting in browser-config file as per requirement
+
 ### Command to Run all Tests ###
 
 npx playwright test --grep regression (Run All test)
