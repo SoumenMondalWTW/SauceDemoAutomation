@@ -13,6 +13,7 @@ test.describe('Multiple Scenarios Workflow', () => {
     test('On Product page, sort the product by price (low to high) and verify ascending order',{tag :['@tc4','@regression']}, async ({ page, context }) => {   
         const loginPage = new LoginPage(page, context);
         const inventoryPage=new InventoryPage(page,context);
+        const menuLogoutPage=new MenuLogoutPage(page,context);
         //Login to the application
         await loginPage.clearCookies();
         await loginPage.navigateTo(data.baseUrl);
@@ -24,6 +25,12 @@ test.describe('Multiple Scenarios Workflow', () => {
         await inventoryPage.sortProductsByGivenOption(data.sortByPriceLowToHigh);
         const isSorted = await inventoryPage.verifyProductsSortedByPriceLowToHigh();
         expect(isSorted).toBeTruthy();
+
+        //Logout from the application
+        await menuLogoutPage.clickMenuButton();
+        await menuLogoutPage.clickLogoutLink();
+        const isLoginButtonVisible = await loginPage.isLoginButtonVisible();
+        expect(isLoginButtonVisible).toBeTruthy();
     });
 
     test('Add multiple items to cart ,check remove button enabled, capture price , validate cart items in your cart page , assert price, remove items from cart then checkout ',{tag :['@tc4','@regression']},async ({ page, context }) => {
