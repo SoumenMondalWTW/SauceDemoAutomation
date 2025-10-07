@@ -18,7 +18,7 @@ export class InventoryPage extends BasePage {
     //Sauce Labs Backpack
 
     async isInventoryPageDisplayed(): Promise<void> {
-         await Utility.waitForElementToBeVisible(this.page, this.inventoryContainer);
+         await Utility.isElementVisible(this.page, this.inventoryContainer);
     }
 
     async addProductToCartByProductName(productName: string): Promise<void> {

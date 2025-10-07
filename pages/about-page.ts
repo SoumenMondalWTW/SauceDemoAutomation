@@ -32,7 +32,7 @@ export class AboutPage extends BasePage {
     }
 
     async areHeaderResourcesVisible(): Promise<boolean> {
-        await Utility.waitForElementToBeVisible(this.page,this.productHeader);
+        await Utility.waitforPageLoad(this.page);
         const productVisible = await Utility.isElementVisible(this.page,this.productHeader);
         const solutionsVisible = await Utility.isElementVisible(this.page,this.solutionsHeader);
         const pricingVisible = await Utility.isElementVisible(this.page,this.pricingHeader);
@@ -45,7 +45,7 @@ export class AboutPage extends BasePage {
     }
 
     async areFrameworksAvailableUnderQuickStartGuide(): Promise<boolean> {
-        await Utility.waitForElementToBeVisible(this.page,this.quickStartGuideSection);
+        await Utility.waitforPageLoad(this.page);
         const seleniumVisible = await Utility.isElementVisible(this.page,this.seleniumLink);
         const cypressVisible = await Utility.isElementVisible(this.page,this.cypressLink);
         const appiumVisible = await Utility.isElementVisible(this.page,this.appiumLink);

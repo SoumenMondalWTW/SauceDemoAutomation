@@ -1,10 +1,6 @@
 import { Page } from 'playwright';
 export class Utility {
 
-    static async waitForElementToBeVisible(page:Page, selector: string, timeout: number = 5000): Promise<void> {
-        await page.waitForSelector(selector, { state: 'visible', timeout });
-    }
-
     static async getPageTitle(page:Page): Promise<string> {
         return page.title();
     }
@@ -13,8 +9,8 @@ export class Utility {
         await page.click(selector);
     }
 
-    static async waitforPageLoad(page:Page, timeout: number = 30000): Promise<void> {
-        await page.waitForLoadState('load', { timeout });
+    static async waitforPageLoad(page:Page): Promise<void> {
+        await page.waitForLoadState('load');
     }
   
     static async enterText(page:Page ,selector: string, text: string): Promise<void> {
