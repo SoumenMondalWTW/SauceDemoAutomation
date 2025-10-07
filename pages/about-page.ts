@@ -17,7 +17,8 @@ export class AboutPage extends BasePage {
     private seleniumLink= '//span[text()="Quickstart guides"]//parent::div//following-sibling::div//span[text()="Selenium"]';
     private cypressLink= '//span[text()="Quickstart guides"]//parent::div//following-sibling::div//span[text()="Cypress"]';
     private appiumLink= '//span[text()="Quickstart guides"]//parent::div//following-sibling::div//span[text()="Appium"]';   
-    private playwrightLink= '//span[text()="Quickstart guides"]//parent::div//following-sibling::div//span[text()="Playwright"]';    
+    private playwrightLink= '//span[text()="Quickstart guides"]//parent::div//following-sibling::div//span[text()="Playwright"]'; 
+    private clickOkButtonOnAlert = '//button[text()="OK"]';   
 
     async clickMenuButton(): Promise<void> {
         await Utility.clickElement(this.page,this.menuButton);
@@ -66,5 +67,13 @@ export class AboutPage extends BasePage {
         const actualTitle = await Utility.getPageTitle(this.page);
         return actualTitle === expectedTitle;
     }
+   async handleAlertIfPresent(): Promise<void> {
+        try {
+            await this.page.waitForSelector(this.clickOkButtonOnAlert);
+            await Utility.clickElement(this.page, this.clickOkButtonOnAlert);
+        } catch (error) {
+            // No alert appeared within the timeout
+        }
+   }
 
 }

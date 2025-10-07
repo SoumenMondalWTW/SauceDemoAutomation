@@ -12,6 +12,7 @@ export class BasePage {
 
     async clearCookies(): Promise<void> {
         await this.browserContext.clearCookies();
+        await this.browserContext.clearPermissions();
     }
   
    async navigateTo(url: string): Promise<void> {

@@ -28,6 +28,9 @@ test.describe('Multiple UI Functionality Scenarios', () => {
         expect(areHeaderResourcesVisible).toBeTruthy();
         console.log('Header Resources are visible');
 
+        //Handle Alert if present
+        await aboutPage.handleAlertIfPresent();
+
         //Hover onto Developers section and verify the dropdown is displayed
         await aboutPage.hoverOnDevelopersHeader();
         const areFrameworksAvailableUnderQuickStartGuide= await aboutPage.areFrameworksAvailableUnderQuickStartGuide();
@@ -35,6 +38,7 @@ test.describe('Multiple UI Functionality Scenarios', () => {
         console.log('Frameworks under Quick Start Guide are visible');
 
         //Click on Selenium link and verify newly opend page
+        //page.pause();
         await aboutPage.clickSeleniumLink();
         const isNewPageTitleCorrect = await aboutPage.verifyNewlyOpenedPageTitle(seleniumPageTitle);
         expect(isNewPageTitleCorrect).toBeTruthy();
